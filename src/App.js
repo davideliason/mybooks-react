@@ -9,8 +9,20 @@ class FilterableBookTable extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
+        <SearchBar />
         <Library data={books} />
       </div>
+    );
+  }
+}
+
+class SearchBar extends React.Component{
+  render(){
+    return(
+       <form>
+         <input type="text" placeholder="Search"></input>
+         <input type="checkbox"></input> In Library only
+       </form>
     );
   }
 }
