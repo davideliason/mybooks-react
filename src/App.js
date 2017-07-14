@@ -46,7 +46,8 @@ class BookRow extends React.Component{
 
     return(
       <tr>
-        <td>Title: {title} By: {this.props.book.author} </td>
+        <td>Title: {title}</td>
+        <td>By: {this.props.book.author}</td>
       </tr>
       )
   }
