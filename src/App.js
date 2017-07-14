@@ -9,18 +9,21 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <Library />
+        <Library data={book1} />
       </div>
     );
   }
 }
 
+var book1 = 
+  {title : "2001"};
+
 class Library extends React.Component{
   render(){
     return(
         <div>
-            <Book title="2001" />
-            <Book title="2222" />
+            Title: {this.props.data.title}
+            <Book title={this.props.data.title} />
         </div>
       )
   }
