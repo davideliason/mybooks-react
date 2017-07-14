@@ -32,7 +32,7 @@ class Library extends React.Component{
 class Book extends React.Component{
   render(){
     return(
-        <h3>Book {this.props.title}</h3>
+        <h3 style={{color:"blue"}}>Book {this.props.title}</h3>
       )
   }
 }
