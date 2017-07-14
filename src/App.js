@@ -29,7 +29,7 @@ class Library extends React.Component{
           </tr>
         </thead>
         <tbody>
-            <BookRow title={this.props.data[1].title} author={this.props.data[1].author} />
+            <BookRow book={this.props.data[1]} />
         </tbody>
       </table>
       );
@@ -38,8 +38,10 @@ class Library extends React.Component{
 
 class BookRow extends React.Component{
   render(){
+    var title = this.props.book.owned ? this.props.book.title : <span style={{color:'red'}}>{this.props.book.title}</span>;
+
     return(
-        <li>Title: {this.props.title} By: {this.props.author}</li>
+        <li>Title: {title} By: {this.props.book.author}</li>
       )
   }
 }
