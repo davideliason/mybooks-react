@@ -20,6 +20,10 @@ var books =
 
 class Library extends React.Component{
   render(){
+    var rows = [];
+    this.props.data.forEach(function(book){
+      rows.push(<BookRow book={book} key={book.title} />);
+    });
     return(
       <table>
         <thead>
@@ -29,7 +33,7 @@ class Library extends React.Component{
           </tr>
         </thead>
         <tbody>
-            <BookRow book={this.props.data[1]} />
+          {rows}
         </tbody>
       </table>
       );
@@ -41,7 +45,9 @@ class BookRow extends React.Component{
     var title = this.props.book.owned ? this.props.book.title : <span style={{color:'red'}}>{this.props.book.title}</span>;
 
     return(
-        <li>Title: {title} By: {this.props.book.author}</li>
+      <tr>
+        <td>Title: {title} By: {this.props.book.author} </td>
+      </tr>
       )
   }
 }
