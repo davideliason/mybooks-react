@@ -21,8 +21,13 @@ var books =
 class Library extends React.Component{
   render(){
     var rows = [];
+    var lastCategory = null;
     this.props.data.forEach(function(book){
+      if(book.category !== lastCategory){
+        rows.push(<BookCategoryRow category={book.category} key={book.category} />);
+      }
       rows.push(<BookRow book={book} key={book.title} />);
+      lastCategory = book.category;
     });
     return(
       <table>
