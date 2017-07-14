@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './mybooks.png';
 import './App.css';
 
-class App extends Component {
+class FilterableBookTable extends Component {
   render() {
     return (
       <div className="App">
@@ -16,25 +16,42 @@ class App extends Component {
 }
 
 var books = 
-  [{title : "2001"},{title:"blue monday"}];
+  [{title : "2001", author:"him",category: "sci-fi", owned: true},{title:"blue monday",author:"her",category:"mystery", owned: false}];
 
 class Library extends React.Component{
   render(){
     return(
-        <div>
-            Title: {this.props.data[0].title}
-            <Book title={this.props.data[1].title} />
-        </div>
-      )
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+            <BookRow title={this.props.data[1].title} author={this.props.data[1].author} />
+        </tbody>
+      </table>
+      );
   }
 }
 
-class Book extends React.Component{
+class BookRow extends React.Component{
   render(){
     return(
-        <h3>Book {this.props.title}</h3>
+        <li>Title: {this.props.title} By: {this.props.author}</li>
       )
   }
 }
 
-export default App;
+class BookCategoryRow extends React.Component{
+  render(){
+    return(
+      <tr>
+        <th colSpan="2">{this.props.category}</th>
+      </tr>
+    )
+  }
+}
+
+export default FilterableBookTable;
