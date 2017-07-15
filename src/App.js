@@ -32,8 +32,8 @@ class SearchBar extends React.Component{
   render(){
     return(
        <form>
-         <input type="text" placeholder="Search"></input>
-         <input type="checkbox"></input> In Library only
+         <input type="text" placeholder="Search" value={this.props.filterText}></input>
+         <input type="checkbox" checked={this.props.inLibraryOnly}></input> In Library only
        </form>
     );
   }
