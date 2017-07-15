@@ -3,7 +3,7 @@ import logo from './mybooks.png';
 import './App.css';
 
 var books = 
-  [{title : "2001", author:"him",category: "sci-fi", owned: true},{title:"blue monday",author:"her",category:"mystery", owned: false}];
+  [{title : "2001", author:"him",category: "sci-fi", inLibraryOnly: true},{title:"blue monday",author:"her",category:"mystery", inLibraryOnly: false}];
 
 class FilterableBookTable extends Component {
   constructor(props){
@@ -12,7 +12,23 @@ class FilterableBookTable extends Component {
       filterText: '',
       inLibraryOnly: false
     };
+
+    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
+    this.handleInLibraryOnlyInputChange = this.handleInLibraryOnlyInputChange.bind(this);
   }
+
+    handleFilterTextInputChange(filterText){
+      this.setState({
+        filterText: filterText
+      });
+    }
+
+    handleInLibraryOnlyInputChange(inLibraryOnly){
+      this.setState({
+        inLibraryOnly: inLibraryOnly
+      });
+    }
+
   render() {
     return (
       <div className="App">
@@ -21,6 +37,8 @@ class FilterableBookTable extends Component {
         </div>
         <SearchBar filterText={this.state.filterText} 
                    inLibraryOnly={this.state.inLibraryOnly}
+                   onFilterTextInput = {this.handleFilterTextInputChange}
+                   onInLibraryOnlyInput = {this.handleInLibraryOnlyInputChange}
         />
         <Library data={books} filterText={this.state.filterText} inLibraryOnly={this.state.inLibraryOnly}  />
       </div>
@@ -29,11 +47,25 @@ class FilterableBookTable extends Component {
 }
 
 class SearchBar extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
+    this.handleInLibraryOnlyInputChange = this.handleInLibraryOnlyInputChange.bind(this);
+  }
+
+  handleFilterTextInputChange(e){
+    this.props.onFilterTextInput(e.target.value);
+  }
+
+  handleInLibraryOnlyInputChange(e){
+    this.props.onInLibraryOnlyInput(e.target.checked);
+  }
+
   render(){
     return(
        <form>
-         <input type="text" placeholder="Search" value={this.props.filterText}></input>
-         <input type="checkbox" checked={this.props.inLibraryOnly}></input> In Library only
+         <input type="text" placeholder="Search" value={this.props.filterText} onChange={this.handleFilterTextInputChange}></input>
+         <input type="checkbox" checked={this.props.inLibraryOnly} onChange={this.handleInLibraryOnlyInputChange}></input> In Library only
        </form>
     );
   }
