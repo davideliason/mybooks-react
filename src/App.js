@@ -3,14 +3,23 @@ import logo from './mybooks.png';
 import './App.css';
 
 class FilterableBookTable extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      filterText: '',
+      inLibrary: false
+    };
+  }
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <SearchBar />
-        <Library data={books} />
+        <SearchBar filterText={this.state.filterText} 
+                   inLibrary={this.state.inLibrary}
+        />
+        <Library data={this.props.books}  />
       </div>
     );
   }
@@ -27,8 +36,6 @@ class SearchBar extends React.Component{
   }
 }
 
-var books = 
-  [{title : "2001", author:"him",category: "sci-fi", owned: true},{title:"blue monday",author:"her",category:"mystery", owned: false}];
 
 class Library extends React.Component{
   render(){
