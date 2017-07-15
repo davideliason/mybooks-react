@@ -47,7 +47,7 @@ class Library extends React.Component{
 
     this.props.data.forEach((book) => {
 
-      if(book.title.indexOf(this.props.filterText) === -1){
+      if(book.title.indexOf(this.props.filterText) === -1 || (!book.inLibraryOnly && this.props.inLibraryOnly)){
         return;
       }
 
