@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import logo from './mybooks.png';
 import './App.css';
 
+var books = 
+  [{title : "2001", author:"him",category: "sci-fi", owned: true},{title:"blue monday",author:"her",category:"mystery", owned: false}];
+
 class FilterableBookTable extends Component {
   constructor(props){
     super(props);
     this.state = {
       filterText: '',
-      inLibrary: false
+      inLibraryOnly: false
     };
   }
   render() {
@@ -17,9 +20,9 @@ class FilterableBookTable extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <SearchBar filterText={this.state.filterText} 
-                   inLibrary={this.state.inLibrary}
+                   inLibraryOnly={this.state.inLibraryOnly}
         />
-        <Library data={this.props.books}  />
+        <Library data={books} filterText={this.state.filterText} inLibraryOnly={this.state.inLibraryOnly}  />
       </div>
     );
   }
@@ -41,7 +44,13 @@ class Library extends React.Component{
   render(){
     var rows = [];
     var lastCategory = null;
-    this.props.data.forEach(function(book){
+
+    this.props.data.forEach((book) => {
+
+      if(book.title.indexOf(this.props.filterText) === -1){
+        return;
+      }
+
       if(book.category !== lastCategory){
         rows.push(<BookCategoryRow category={book.category} key={book.category} />);
       }
