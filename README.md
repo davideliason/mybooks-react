@@ -1,7 +1,8 @@
-# mybooks (using react)
+# MyBooks (using react)
 ## July 14, 2017
-### [David Eliason](http://www.deliason.com)
-What? App using react.js to create filterable data using state
+### [David Eliason](http://www.davethemaker.com)
+### Description:
+App using react.js to create filterable data using state
 
 [live version on heroku](https://mybooks-react.herokuapp.com/)
 

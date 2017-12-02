@@ -34,6 +34,7 @@ class FilterableBookTable extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <p><a href="https://github.com/davideliason/react-todo-list">GitHub</a></p>
         </div>
         <SearchBar filterText={this.state.filterText} 
                    inLibraryOnly={this.state.inLibraryOnly}
